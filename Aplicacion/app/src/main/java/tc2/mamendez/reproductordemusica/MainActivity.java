@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                mp.seekTo(progreso.getProgress());
+                if(cancion_Actual!= -1){mp.seekTo(progreso.getProgress());}
             }
         });
 
