@@ -29,10 +29,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:maxLength="5000"
-                    android:maxLines="300"
+                    android:maxLength="9000"
+                    android:maxLines="800"
                     android:scrollbars="vertical"
-                    android:layout_marginBottom="-900dp"/>
+                    android:layout_marginBottom="-2000dp"/>
             </RelativeLayout>
 
             <LinearLayout

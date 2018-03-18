@@ -1,14 +1,12 @@
 package tc2.mamendez.reproductordemusica;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -16,20 +14,14 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -206,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         music_lyrics.add("percance__la_negra.txt");
         music.add(R.raw.raido_jesse_baez__meant_to_be);
         music_show.add("Raido ft. Jesse Baez - Meant to be");
-        music_lyrics.add("raido_jesse_baez__meant_to_be.txt");
+        music_lyrics.add("raido_jesse_baez__meant_to_be_malo.txt");
         music.add(R.raw.sonambulo_psicotropical__agua);
         music_show.add("Sonámbulo Psicotropical - Agua");
         music_lyrics.add("cocofunka__carlitos_bad_boy.txt");
@@ -277,17 +269,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enseñar_letras(){
-        System.out.println("Entra");
         TextView lyrics = findViewById(R.id.txt_lyrics);
         lyrics.setTranslationY(500f);
         try{
-            String texto = readFromAssets(getApplicationContext(), music_lyrics.get(cancion_Actual));
-            System.out.println(texto);
-            lyrics.setText(texto, TextView.BufferType.SPANNABLE);
+            lyrics.setText(readFromAssets(getApplicationContext(), music_lyrics.get(cancion_Actual)));
 
         } catch (Exception e) {
             e.printStackTrace();
-            lyrics.setText("Letras no disponibles", TextView.BufferType.SPANNABLE);
+            lyrics.setText("Letras no disponibles");
         }
         lyrics.animate().translationYBy(-4000f).setDuration(250000);
     }
@@ -298,13 +287,10 @@ public class MainActivity extends AppCompatActivity {
         // do reading, usually loop until end of file reading
         StringBuilder sb = new StringBuilder();
         String mLine = reader.readLine();
-        int cont = 0;
         while (mLine != null) {
             sb.append(mLine+"\n"); // process line
             mLine = reader.readLine();
-            cont++;
         }
-        System.out.println("Leidos "+Integer.toString(cont));
         reader.close();
         return sb.toString();
     }
